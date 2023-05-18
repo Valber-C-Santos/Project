@@ -20,6 +20,7 @@ function tresQuadrado() {
     const createPaleta = document.createElement('div');
     createPaleta.style.backgroundColor = 'black';
     createPaleta.classList.add('color');
+    createPaleta.classList.add('selected');
     paletasession.appendChild(createPaleta);
   }
 
