@@ -5,16 +5,16 @@
   border: 1px solid black;
 }
 
-#pixel-board{
-  width: 25%;
-
+#pixel-board {
+  width: 250px;
+  height: 200px;
 }
 
 .pixel {
 
   display: inline-block;
-  width: 80px;
-  height: 80px;
- border: 3px solid black;
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
 
 }
