@@ -2,6 +2,7 @@ const paletasession = document.querySelector('#color-palette');
 const cores = ['black', 'orange', 'blue', 'pink'];
 const btn = document.createElement('button');
 const divCores = document.getElementsByClassName('color');
+const sessionEscolha = document.getElementById('pixel-board');
 
 function geradorCor() {
   let letras = '0123456789abcdef'
@@ -9,12 +10,11 @@ function geradorCor() {
 
   for (let index = 0; index < 6; index += 1) {
     cor += letras[Math.floor(Math.random() * 16)];
-
   }
   return cor;
 }
 
-function quadrado() {
+function tresQuadrado() {
 
   for (let index = 0; index < 1; index += 1) {
     const createPaleta = document.createElement('div');
@@ -30,15 +30,26 @@ function quadrado() {
     paletasession.appendChild(createPaleta);
   }
 }
-
-function botao() {
+function botao(random) {
 
   btn.setAttribute('id', 'button-random-color');
   btn.innerText = 'Cores aleatórias';
   paletasession.appendChild(btn);
+  localStorage.setItem('Cores random', random);
 }
 
-quadrado();
+function cincoXCInco() {
+
+for (let index = 0; index < 25; index += 1) {
+  const createQuadrado = document.createElement('div');
+  createQuadrado.style.backgroundColor = 'white';
+  createQuadrado.classList.add('pixel');
+  sessionEscolha.appendChild(createQuadrado);
+}
+}
+
+cincoXCInco();
+tresQuadrado();
 botao();
 
 btn.addEventListener('click', () => {
