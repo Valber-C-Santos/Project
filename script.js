@@ -39,7 +39,7 @@ function botao(random) {
   localStorage.setItem('Cores random', random);
 }
 
-function cincoXCInco() {
+function cincoXCinco() {
 
 for (let index = 0; index < 25; index += 1) {
   const createQuadrado = document.createElement('div');
@@ -49,9 +49,20 @@ for (let index = 0; index < 25; index += 1) {
 }
 }
 
-cincoXCInco();
+function selecaoCor() {
+  for (let index = 0; index < divCores.length; index += 1) {
+  divCores[index].addEventListener('click', (event) =>{
+    let selecao = document.querySelector('.selected');
+    selecao.classList.remove('selected');
+    event.target.classList.add('selected')
+  }) 
+  }
+}
+
+cincoXCinco();
 tresQuadrado();
 botao();
+selecaoCor();
 
 btn.addEventListener('click', () => {
 
