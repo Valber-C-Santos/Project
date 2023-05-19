@@ -3,6 +3,8 @@ const cores = ['black', 'orange', 'blue', 'pink'];
 const btn = document.createElement('button');
 const divCores = document.getElementsByClassName('color');
 const sessionEscolha = document.getElementById('pixel-board');
+const sessaoRestaura = document.querySelector('#botao-restaura');
+const btnrestaura = document.createElement('button');
 
 function geradorCor() {
   let letras = '0123456789abcdef'
@@ -36,6 +38,13 @@ function botao(random) {
   btn.setAttribute('id', 'button-random-color');
   btn.innerText = 'Cores aleatórias';
   paletasession.appendChild(btn);
+}
+
+function botaoRestore() {
+
+  btnrestaura .setAttribute('id', 'clear-board');
+  btnrestaura .innerText = 'Limpar';
+  sessaoRestaura.appendChild(btnrestaura);
 }
 
 function cincoXCinco() {
@@ -72,6 +81,7 @@ tresQuadrado();
 botao();
 selecaoCor();
 paintPixel();
+botaoRestore();
 
 btn.addEventListener('click', () => {
 
@@ -80,3 +90,12 @@ btn.addEventListener('click', () => {
     mistura.style.backgroundColor = geradorCor();
   }
 });
+
+btnrestaura.addEventListener('click', () => {
+
+  const guarPixel = document.querySelectorAll('.pixel');
+  for (let index = 0; index < guarPixel.length; index += 1) {
+  let apaga = guarPixel[index];
+    apaga.style.backgroundColor = 'white';
+  }
+})
