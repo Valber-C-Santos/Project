@@ -17,20 +17,39 @@ function geradorCor() {
 }
 
 function tresQuadrado() {
+  const corSalva = localStorage.getItem('colorPalette');
+  if (corSalva) {
+    const paleta = JSON.parse(corSalva);
+    for (let index = 0; index < paleta.length; index += 1) {
+      const createPaleta = document.createElement('div');
+      createPaleta.classList.add('color');
+      createPaleta.style.backgroundColor = paleta[index];
+      paletasession.appendChild(createPaleta);
+      if (index === 0) {
+        createPaleta.classList.add('selected');
+      }
+    }
+  } else {
+    const paleta = [];
 
-  for (let index = 0; index < 1; index += 1) {
-    const createPaleta = document.createElement('div');
-    createPaleta.style.backgroundColor = 'black';
-    createPaleta.classList.add('color');
-    createPaleta.classList.add('selected');
-    paletasession.appendChild(createPaleta);
-  }
+    for (let index = 0; index < 1; index += 1) {
+      const createPaleta = document.createElement('div');
+      createPaleta.style.backgroundColor = cores[index];
+      createPaleta.classList.add('color');
+      createPaleta.classList.add('selected');
+      paletasession.appendChild(createPaleta);
+      paleta.push(cores[index]);
+    }
 
-  for (let index = 0; index < 3; index += 1) {
-    const createPaleta = document.createElement('div');
-    createPaleta.classList.add('color');
-    createPaleta.style.backgroundColor = geradorCor();
-    paletasession.appendChild(createPaleta);
+    for (let index = 0; index < 3; index += 1) {
+      const createPaleta = document.createElement('div');
+      createPaleta.classList.add('color');
+      const colorRandom = geradorCor();
+      createPaleta.style.backgroundColor = colorRandom;
+      paletasession.appendChild(createPaleta);
+      paleta.push(colorRandom);
+    }
+    localStorage.setItem('colorPalette', JSON.stringify(paleta));
   }
 }
 function botao(random) {
@@ -42,8 +61,8 @@ function botao(random) {
 
 function botaoRestore() {
 
-  btnrestaura .setAttribute('id', 'clear-board');
-  btnrestaura .innerText = 'Limpar';
+  btnrestaura.setAttribute('id', 'clear-board');
+  btnrestaura.innerText = 'Limpar';
   sessaoRestaura.appendChild(btnrestaura);
 }
 
@@ -89,13 +108,19 @@ btn.addEventListener('click', () => {
     let mistura = divCores[index];
     mistura.style.backgroundColor = geradorCor();
   }
+  const paleta = [];
+    const divs = document.querySelectorAll('.color');
+    divs.forEach((div) => {
+        paleta.push(div.style.backgroundColor);
+    });
+    localStorage.setItem('colorPalette', JSON.stringify(paleta));
 });
 
 btnrestaura.addEventListener('click', () => {
 
   const guarPixel = document.querySelectorAll('.pixel');
   for (let index = 0; index < guarPixel.length; index += 1) {
-  let apaga = guarPixel[index];
+    let apaga = guarPixel[index];
     apaga.style.backgroundColor = 'white';
   }
-})
+});
