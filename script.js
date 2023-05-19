@@ -36,26 +36,34 @@ function botao(random) {
   btn.setAttribute('id', 'button-random-color');
   btn.innerText = 'Cores aleatórias';
   paletasession.appendChild(btn);
-  localStorage.setItem('Cores random', random);
 }
 
 function cincoXCinco() {
 
-for (let index = 0; index < 25; index += 1) {
-  const createQuadrado = document.createElement('div');
-  createQuadrado.style.backgroundColor = 'white';
-  createQuadrado.classList.add('pixel');
-  sessionEscolha.appendChild(createQuadrado);
-}
+  for (let index = 0; index < 25; index += 1) {
+    const createQuadrado = document.createElement('div');
+    createQuadrado.style.backgroundColor = 'white';
+    createQuadrado.classList.add('pixel');
+    sessionEscolha.appendChild(createQuadrado);
+  }
 }
 
 function selecaoCor() {
   for (let index = 0; index < divCores.length; index += 1) {
-  divCores[index].addEventListener('click', (event) =>{
-    let selecao = document.querySelector('.selected');
-    selecao.classList.remove('selected');
-    event.target.classList.add('selected')
-  }) 
+    divCores[index].addEventListener('click', (event) => {
+      let selecao = document.querySelector('.selected');
+      selecao.classList.remove('selected');
+      event.target.classList.add('selected')
+    })
+  }
+}
+const paintPixel = () => {
+  const guardPixel = document.querySelectorAll('.pixel');
+  for (let index = 0; index < guardPixel.length; index += 1) {
+    guardPixel[index].addEventListener('click', function (event) {
+      const selectedColor = document.querySelector('.selected').style.backgroundColor;
+      event.target.style.backgroundColor = selectedColor;
+    });
   }
 }
 
@@ -63,6 +71,7 @@ cincoXCinco();
 tresQuadrado();
 botao();
 selecaoCor();
+paintPixel();
 
 btn.addEventListener('click', () => {
 
